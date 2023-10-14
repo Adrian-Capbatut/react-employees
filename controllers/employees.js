@@ -11,10 +11,48 @@ const all = async (req, res) => {
 
         res.status(200).json(employees);
     } catch {
-        res.status(400).json({ message: 'Nu puteti primi angajati ' })
+        res.status(500).json({ message: "Nu puteti primi angajati " });
+    }
+};
+
+/**
+ * @route POST /api/employees/add
+ * @desc adaugarea angajatului
+ * @access Private
+ */
+const add = async (req, res) => {
+    try {
+        const data = req.body;
+
+        if (!data.firstName || !data.lastName || !data.adress || !data.age) {
+            return res.status(400).json({ message: "Toate campurile sunt obligatorii" })
+        }
+
+        // await prisma.user.update({
+        //     where: {
+        //         id: req.user.id
+        //     },
+        //     data: {
+        //         createdEmployee: {
+        //             create: data
+        //         }
+        //     }
+        // })
+
+        const employee = await prisma.employee.create({
+            data: {
+                ...data,
+                userId: req.user.id
+            }
+        })
+
+        return res.status(201).json(employee)
+    } catch {
+        res.status(500).json({ message: "Ceva nu a mers bine" });
     }
 };
 
 module.exports = {
-    all
-}
+    all,
+    add,
+};

@@ -41,7 +41,7 @@ const login = async (req, res) => {
                 .json({ message: "Nu este corect loghin sau parola" });
         }
     } catch {
-        res.status(400).json({ message: "Ceva nu a mers bine" });
+        res.status(500).json({ message: "Ceva nu a mers bine" });
     }
 };
 
@@ -96,7 +96,7 @@ const register = async (req, res) => {
             return res.status(400).json({ message: "Nu sa putut  crea utilizator" });
         }
     } catch {
-        res.status(400).json({ message: "Ceva nu a mers bine" });
+        res.status(500).json({ message: "Ceva nu a mers bine" });
     }
 };
 
