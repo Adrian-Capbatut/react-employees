@@ -91,8 +91,15 @@ const register = async (req, res) => {
     }
 };
 
+/**
+ *
+ * @proute GET /api/user/current
+ * @desc utilizatorul curent
+ * @access Private
+ */
+
 const current = async (req, res) => {
-    res.send("current");
+    return res.status(200).json(req.user);
 };
 
 module.exports = {
