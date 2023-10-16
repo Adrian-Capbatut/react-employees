@@ -25,7 +25,9 @@ const add = async (req, res) => {
         const data = req.body;
 
         if (!data.firstName || !data.lastName || !data.adress || !data.age) {
-            return res.status(400).json({ message: "Toate campurile sunt obligatorii" })
+            return res
+                .status(400)
+                .json({ message: "Toate campurile sunt obligatorii" });
         }
 
         // await prisma.user.update({
@@ -42,13 +44,35 @@ const add = async (req, res) => {
         const employee = await prisma.employee.create({
             data: {
                 ...data,
-                userId: req.user.id
-            }
-        })
+                userId: req.user.id,
+            },
+        });
 
-        return res.status(201).json(employee)
+        return res.status(201).json(employee);
     } catch {
         res.status(500).json({ message: "Ceva nu a mers bine" });
+    }
+};
+
+/**
+ *
+ * @route POST /api/employees/remove/:id
+ * @desc remove user
+ * @acces Private
+ */
+const remove = async (req, res) => {
+    const { id } = req.body;
+
+    try {
+        await prisma.employee.delete({
+            where: {
+                id,
+            },
+        });
+
+        res.status(204).json('Efectuat')
+    } catch {
+        res.status(500).json({ message: "Stergerea utilizatorului esuata" });
     }
 };
 
