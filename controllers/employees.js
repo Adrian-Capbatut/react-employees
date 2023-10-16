@@ -92,9 +92,29 @@ const edit = async (req, res) => {
             data,
         });
 
-        res.status(204).json('Schimbarile au fost efectuate')
+        res.status(204).json("Schimbarile au fost efectuate");
     } catch {
         res.status(500).json({ message: "Editare utilizator esuata" });
+    }
+};
+
+/**
+ * @route GET /api/employees/edit/:id
+ * @desc cautare user
+ * @acces Private
+ */
+const employee = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const employee = await prisma.employee.findUnique({
+            where: {
+                id,
+            },
+        });
+
+        res.status(200).json(employee);
+    } catch {
+        res.status(500).json({ message: "Utilizatorul nu a fost gasit" });
     }
 };
 
@@ -103,4 +123,5 @@ module.exports = {
     add,
     remove,
     edit,
+    employee,
 };
