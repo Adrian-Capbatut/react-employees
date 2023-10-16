@@ -55,7 +55,6 @@ const add = async (req, res) => {
 };
 
 /**
- *
  * @route POST /api/employees/remove/:id
  * @desc remove user
  * @acces Private
@@ -70,13 +69,38 @@ const remove = async (req, res) => {
             },
         });
 
-        res.status(204).json('Efectuat')
+        res.status(204).json("Efectuat");
     } catch {
         res.status(500).json({ message: "Stergerea utilizatorului esuata" });
+    }
+};
+
+/**
+ * @route PUT /api/employees/edit/:id
+ * @desc edit user
+ * @acces Private
+ */
+const edit = async (req, res) => {
+    const data = req.body;
+    const id = data.id;
+
+    try {
+        await prisma.employee.update({
+            where: {
+                id,
+            },
+            data,
+        });
+
+        res.status(204).json('Schimbarile au fost efectuate')
+    } catch {
+        res.status(500).json({ message: "Editare utilizator esuata" });
     }
 };
 
 module.exports = {
     all,
     add,
+    remove,
+    edit,
 };
