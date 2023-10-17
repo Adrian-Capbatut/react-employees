@@ -5,9 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 import { Paths } from './paths';
-import './index.css';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
+import './index.css';
 
 const router = createBrowserRouter([
   {
