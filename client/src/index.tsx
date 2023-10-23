@@ -11,6 +11,7 @@ import { Register } from "./pages/register";
 import "./index.css";
 import { Auth } from "./features/auth/auth";
 import { Employees } from "./pages/employees";
+import { Status } from "./pages/status";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: Paths.register,
     element: <Register />,
+  },
+  {
+    path: `${Paths.status}/:status`,
+    element: <Status />,
   },
 ]);
 
