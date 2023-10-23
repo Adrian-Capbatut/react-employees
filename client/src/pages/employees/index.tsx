@@ -21,8 +21,8 @@ const columns: ColumnsType<Employee> = [
   },
   {
     title: "Adresa",
-    dataIndex: "address",
-    key: "address",
+    dataIndex: "adress",
+    key: "adress",
   },
 ];
 
