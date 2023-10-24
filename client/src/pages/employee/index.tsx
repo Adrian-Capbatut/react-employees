@@ -33,6 +33,32 @@ export const Employee = () => {
     return <Navigate to="/" />;
   }
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteUser = async () => {
+    hideModal();
+
+    try {
+      await removeEmployee(data.id).unwrap();
+
+      navigate(`${Paths.status}/deleted`);
+    } catch (error) {
+      const maybeError = isErrorWithMessage(error);
+
+      if (maybeError) {
+        setError(error.data.message);
+      } else {
+        setError("Eroare neidentificata");
+      }
+    }
+  };
+
   return (
     <Layout>
       <Descriptions title="Informatie denspre angajat" bordered>
@@ -69,7 +95,7 @@ export const Employee = () => {
             <CustomButton
               shape="round"
               danger
-              onClick={() => null}
+              onClick={showModal}
               icon={<DeleteOutlined />}>
               Stergeti
             </CustomButton>
@@ -91,8 +117,8 @@ export const Employee = () => {
       <Modal
         title="Confimarti stergerea angajatului"
         open={isModalOpen}
-        onOk={() => null}
-        onCancel={() => null}
+        onOk={handleDeleteUser}
+        onCancel={hideModal}
         okText="Confirmati"
         cancelText="Anulati">
         Doriti sa stergeti angajatul din tabel?
