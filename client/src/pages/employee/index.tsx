@@ -6,10 +6,11 @@ import {
 } from "../../app/services/employees";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/auth/authSlice";
-import { Descriptions, Divider, Space } from "antd";
+import { Descriptions, Divider, Modal, Space } from "antd";
 import { Layout } from "../../components/layout";
 import { CustomButton } from "../../components/custom-button";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { ErrorMessage } from "../../components/error-message";
 
 export const Employee = () => {
   const navigate = useNavigate();
@@ -63,6 +64,16 @@ export const Employee = () => {
           </Space>
         </>
       )}
+      <ErrorMessage message={error} />
+      <Modal
+        title="Confimarti stergerea angajatului"
+        open={isModalOpen}
+        onOk={() => null}
+        onCancel={() => null}
+        okText="Confirmati"
+        cancelText="Anulati">
+        Doriti sa stergeti angajatul din tabel?
+      </Modal>
     </Layout>
   );
 };
