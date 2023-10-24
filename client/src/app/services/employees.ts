@@ -36,7 +36,7 @@ export const employeesApi = api.injectEndpoints({
       query: (employee) => ({
         url: `/employees/add`,
         method: "POST",
-        body: { employee },
+        body: employee,
       }),
     }),
   }),
