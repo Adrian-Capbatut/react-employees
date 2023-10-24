@@ -20,6 +20,28 @@ export const EditEmployee = () => {
         return <span>Se incarca</span>
     }
 
+    const handleEditUser = async (employee: Employee) => {
+        try {
+            const editedEmployee = {
+                ...data,
+                ...employee
+            };
+
+            await editEmployee(editedEmployee).unwrap;
+
+            navigate(`${Paths.status}/update`);
+            
+        } catch (error) {
+            const maybeError = isErrorWithMessage(error);
+
+            if(maybeError) {
+                setError(error.data.message)
+            } else {
+                setError('Eroare neidentificata')
+            }
+            
+        }
+    }
 
     return(
 <Layout>
