@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams, Link } from "react-router-dom";
 import {
   useGetEmployeesQuery,
   useRemoveEmployeesMutation,
 } from "../../app/services/employees";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/auth/authSlice";
-import { Descriptions } from "antd";
+import { Descriptions, Divider, Space } from "antd";
 import { Layout } from "../../components/layout";
+import { CustomButton } from "../../components/custom-button";
+import { EditOutlined } from "@ant-design/icons";
 
 export const Employee = () => {
   const navigate = useNavigate();
@@ -39,6 +41,21 @@ export const Employee = () => {
           {data.adress}
         </Descriptions.Item>
       </Descriptions>
+      {user?.id === data.userId && (
+        <>
+          <Divider orientation="left">Actiune</Divider>
+          <Space>
+            <Link to={`/employee/edit/${data.id}`}>
+              <CustomButton
+                shape="round"
+                type="default"
+                icon={<EditOutlined />}>
+                Redacteaza
+              </CustomButton>
+            </Link>
+          </Space>
+        </>
+      )}
     </Layout>
   );
 };
