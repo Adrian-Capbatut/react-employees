@@ -9,7 +9,11 @@ import { selectUser } from "../../features/auth/authSlice";
 import { Descriptions, Divider, Modal, Space } from "antd";
 import { Layout } from "../../components/layout";
 import { CustomButton } from "../../components/custom-button";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  BackwardOutlined,
+} from "@ant-design/icons";
 import { ErrorMessage } from "../../components/error-message";
 
 export const Employee = () => {
@@ -42,10 +46,18 @@ export const Employee = () => {
           {data.adress}
         </Descriptions.Item>
       </Descriptions>
+      <Divider orientation="left">Actiune</Divider>
       {user?.id === data.userId && (
         <>
-          <Divider orientation="left">Actiune</Divider>
           <Space>
+            <Link to="/">
+              <CustomButton
+                shape="round"
+                type="primary"
+                icon={<BackwardOutlined />}>
+                Înapoi
+              </CustomButton>
+            </Link>
             <Link to={`/employee/edit/${data.id}`}>
               <CustomButton
                 shape="round"
@@ -62,6 +74,18 @@ export const Employee = () => {
               Stergeti
             </CustomButton>
           </Space>
+        </>
+      )}
+      {user?.id !== data.userId && (
+        <>
+          <Link to="/">
+            <CustomButton
+              shape="round"
+              type="primary"
+              icon={<BackwardOutlined />}>
+              Înapoi
+            </CustomButton>
+          </Link>
         </>
       )}
       <ErrorMessage message={error} />
