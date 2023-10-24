@@ -47,13 +47,13 @@ export const Employee = () => {
         </Descriptions.Item>
       </Descriptions>
       <Divider orientation="left">Actiune</Divider>
-      {user?.id === data.userId && (
+      {user?.id === data.userId ? (
         <>
           <Space>
             <Link to="/">
               <CustomButton
                 shape="round"
-                type="primary"
+                type="default"
                 icon={<BackwardOutlined />}>
                 Înapoi
               </CustomButton>
@@ -75,8 +75,7 @@ export const Employee = () => {
             </CustomButton>
           </Space>
         </>
-      )}
-      {user?.id !== data.userId && (
+      ) : (
         <>
           <Link to="/">
             <CustomButton
