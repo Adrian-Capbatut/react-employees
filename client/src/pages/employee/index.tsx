@@ -9,7 +9,7 @@ import { selectUser } from "../../features/auth/authSlice";
 import { Descriptions, Divider, Space } from "antd";
 import { Layout } from "../../components/layout";
 import { CustomButton } from "../../components/custom-button";
-import { EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export const Employee = () => {
   const navigate = useNavigate();
@@ -53,6 +53,13 @@ export const Employee = () => {
                 Redacteaza
               </CustomButton>
             </Link>
+            <CustomButton
+              shape="round"
+              danger
+              onClick={() => null}
+              icon={<DeleteOutlined />}>
+              Stergeti
+            </CustomButton>
           </Space>
         </>
       )}
