@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useEditEmployeesMutation,
@@ -10,7 +10,6 @@ import { EmployeeForm } from "../../components/employee-form";
 import { Employee } from "@prisma/client";
 import { Paths } from "../../paths";
 import { isErrorWithMessage } from "../../utils/is-error-with-message";
-import { EditOutlined } from "@ant-design/icons";
 
 export const EditEmployee = () => {
   const navigate = useNavigate();
@@ -44,19 +43,12 @@ export const EditEmployee = () => {
     }
   };
 
-  const btnText = (
-    <span>
-      <EditOutlined style={{ marginRight: "10px"}} />
-      Redactati
-    </span>
-  );
-
   return (
     <Layout>
       <Row align="middle" justify="center">
         <EmployeeForm
           title="Redactati angajatul"
-          btnText={btnText}
+          btnText="Redactati"
           error={error}
           employee={data}
           onFinish={handleEditUser}

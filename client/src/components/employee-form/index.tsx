@@ -4,6 +4,8 @@ import { CustomInput } from "../costum-input";
 import { ErrorMessage } from "../error-message";
 import { CustomButton } from "../custom-button";
 import { ReactNode } from "react";
+import { EditOutlined, HomeOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 type Props<T> = {
   onFinish: (values: T) => void;
@@ -28,8 +30,15 @@ export const EmployeeForm = ({
         <CustomInput type="number" name="age" placeholder="Varsta" />
         <CustomInput type="text" name="adress" placeholder="Adresa" />
         <Space>
+          <CustomButton htmlType="submit" icon={<EditOutlined />}>
+            {btnText}
+          </CustomButton>
+          <Link to="/">
+            <CustomButton icon={<HomeOutlined />} type="default">
+              Înapoi
+            </CustomButton>
+          </Link>
           <ErrorMessage message={error} />
-          <CustomButton htmlType="submit">{btnText}</CustomButton>
         </Space>
       </Form>
     </Card>
