@@ -1,4 +1,4 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { UserAddOutlined, UserOutlined } from "@ant-design/icons";
 import { CustomButton } from "../../components/custom-button";
 import { Layout } from "../../components/layout";
 import { Table } from "antd";
@@ -16,6 +16,16 @@ const columns: ColumnsType<Employee> = [
     title: "Nume",
     dataIndex: "firstName",
     key: "firstName",
+    render: (text, record) => (
+      <span>
+        <UserOutlined style={{ marginRight: "5px" }} /> {text}
+      </span>
+    ),
+  },
+  {
+    title: "Prenume",
+    dataIndex: "lastName",
+    key: "lastName",
   },
   {
     title: "Varsta",
@@ -40,14 +50,14 @@ export const Employees = () => {
     }
   }, [navigate, user]);
 
-  const goToAddUser = () => navigate(Paths.employeeAdd)
+  const goToAddUser = () => navigate(Paths.employeeAdd);
 
   return (
     <Layout>
       <CustomButton
         type="primary"
-        onClick={ goToAddUser }
-        icon={<PlusCircleOutlined />}>
+        onClick={goToAddUser}
+        icon={<UserAddOutlined />}>
         Adaugati
       </CustomButton>
       <Table

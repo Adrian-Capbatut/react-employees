@@ -3,10 +3,11 @@ import { Card, Form, Space } from "antd";
 import { CustomInput } from "../costum-input";
 import { ErrorMessage } from "../error-message";
 import { CustomButton } from "../custom-button";
+import { ReactNode } from "react";
 
 type Props<T> = {
   onFinish: (values: T) => void;
-  btnText: string;
+  btnText: ReactNode;
   title: string;
   error?: string;
   employee?: T;
