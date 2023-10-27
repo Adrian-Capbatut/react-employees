@@ -1,4 +1,8 @@
 node_modules
 # Keep environment variables out of version control
 .env
+<<<<<<< HEAD
 prisma
+=======
+prisma/dev.db
+>>>>>>> design-updates
